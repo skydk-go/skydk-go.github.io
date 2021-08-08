@@ -445,28 +445,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-08-05
+                    2021-08-08
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-05
+                    2021-08-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    263
+                    822
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -489,10 +489,91 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>今天在leetcode中碰到了求二叉树的深度问题，于是总结一下这两种方法</p>
-<ol>
-<li><strong>方法一</strong>是用递归的方法，<strong>方法二</strong>是借助队列和层序遍历的思想<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//构建二叉树</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> *<span class="title">left</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> *<span class="title">right</span>;</span></span><br><span class="line">    <span class="built_in">TreeNode</span>(<span class="keyword">int</span> x):<span class="built_in">val</span>(x),<span class="built_in">left</span>(<span class="literal">NULL</span>),<span class="built_in">right</span>(<span class="literal">NULL</span>)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//方法一:判断树不为空就一直遍历下去</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">TreeDepth</span><span class="params">(TreeNode* pRoot)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!pRoot) <span class="keyword">return</span> <span class="number">0</span> ;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">max</span>(<span class="number">1</span>+<span class="built_in">TreeDepth</span>(pRoot-&gt;left), <span class="number">1</span>+<span class="built_in">TreeDepth</span>(pRoot-&gt;right));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//方法二:利用层序遍历的思想，每一层都弹出队列，深度才加一</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">TreeDepth</span><span class="params">(TreeNode* pRoot)</span></span></span><br><span class="line"><span class="function">    </span>&#123;    <span class="keyword">if</span>(pRoot==<span class="literal">NULL</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">         <span class="keyword">int</span> depth=<span class="number">0</span>;</span><br><span class="line">        TreeNode* p1=pRoot;</span><br><span class="line">        TreeNode* front;</span><br><span class="line">        queue&lt;TreeNode*&gt; q1;</span><br><span class="line">        q1.<span class="built_in">push</span>(p1);</span><br><span class="line">        <span class="keyword">while</span>(!q1.<span class="built_in">empty</span>())</span><br><span class="line">        &#123;  </span><br><span class="line">         depth++;</span><br><span class="line">         <span class="keyword">int</span> size1=q1.<span class="built_in">size</span>();</span><br><span class="line">         <span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line">       <span class="comment">//每次弹出所有的队列元素，然后让深度加一//</span></span><br><span class="line">         <span class="keyword">while</span>(count&lt;size1)</span><br><span class="line">             &#123;</span><br><span class="line">                 front=q1.<span class="built_in">front</span>();</span><br><span class="line">                 q1.<span class="built_in">pop</span>();</span><br><span class="line">                 count++;</span><br><span class="line">                <span class="keyword">if</span>(front-&gt;left!=<span class="literal">NULL</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                    q1.<span class="built_in">push</span>(front-&gt;left);</span><br><span class="line">                    &#125;</span><br><span class="line">                <span class="keyword">if</span>(front-&gt;right!=<span class="literal">NULL</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                    q1.<span class="built_in">push</span>(front-&gt;right);</span><br><span class="line">                    &#125;</span><br><span class="line">             &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">     <span class="keyword">return</span> depth;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ol>
+                <p>1、Go语言中如何处理函数内部定义的局部变量，我们现在在函数中定义两个局部变量</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">TestPtr</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span><span class="token builtin">string</span> <span class="token punctuation">{</span>
+	name <span class="token operator">:=</span> <span class="token string">"zhangsan"</span>
+	p1 <span class="token operator">:=</span> <span class="token operator">&amp;</span>name
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"*p1"</span><span class="token punctuation">,</span> <span class="token operator">*</span>p1<span class="token punctuation">)</span>
+
+	city <span class="token operator">:=</span> <span class="token string">"shanghai"</span>
+	ptr <span class="token operator">:=</span> <span class="token operator">&amp;</span>city
+	<span class="token keyword">return</span> ptr 
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>2、在main函数中去调用局部变量</p>
+<pre class="line-numbers language-golang" data-language="golang"><code class="language-golang">func main() {
+	p := TestPtr()
+	fmt.Println("*p", *p)
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>3、完整程序如下所示</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	p <span class="token operator">:=</span> <span class="token function">TestPtr</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"*p"</span><span class="token punctuation">,</span> <span class="token operator">*</span>p<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token function">TestPtr</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span><span class="token builtin">string</span> <span class="token punctuation">{</span>
+	name <span class="token operator">:=</span> <span class="token string">"zhangsan"</span>
+	p1 <span class="token operator">:=</span> <span class="token operator">&amp;</span>name
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"*p1"</span><span class="token punctuation">,</span> <span class="token operator">*</span>p1<span class="token punctuation">)</span>
+
+	city <span class="token operator">:=</span> <span class="token string">"shanghai"</span>
+	ptr <span class="token operator">:=</span> <span class="token operator">&amp;</span>city
+	<span class="token keyword">return</span> ptr 
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>4、利用gcflags去捕捉编译信息，并将信息写入到1.txt文件中</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">go build -o test.exe --gcflags "-m -m -l" 内存逃逸.go &gt;1.txt 2&gt;&amp;1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>5、结果如下，发现在堆栈上的局部变量逃逸到了堆内存上，而name变量并没有。</p>
+<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt"># command-line-arguments
+.\内存逃逸.go:12:21: *p1 escapes to heap:
+.\内存逃逸.go:12:21:   flow: {storage for ... argument} = &amp;{storage for *p1}:
+.\内存逃逸.go:12:21:     from *p1 (spill) at .\内存逃逸.go:12:21
+.\内存逃逸.go:12:21:     from ... argument (slice-literal-element) at .\内存逃逸.go:12:13
+.\内存逃逸.go:12:21:   flow: {heap} = {storage for ... argument}:
+.\内存逃逸.go:12:21:     from ... argument (spill) at .\内存逃逸.go:12:13
+.\内存逃逸.go:12:21:     from fmt.Println(... argument...) (call parameter) at .\内存逃逸.go:12:13
+.\内存逃逸.go:12:14: "*p1" escapes to heap:
+.\内存逃逸.go:12:14:   flow: {storage for ... argument} = &amp;{storage for "*p1"}:
+.\内存逃逸.go:12:14:     from "*p1" (spill) at .\内存逃逸.go:12:14
+.\内存逃逸.go:12:14:     from ... argument (slice-literal-element) at .\内存逃逸.go:12:13
+.\内存逃逸.go:12:14:   flow: {heap} = {storage for ... argument}:
+.\内存逃逸.go:12:14:     from ... argument (spill) at .\内存逃逸.go:12:13
+.\内存逃逸.go:12:14:     from fmt.Println(... argument...) (call parameter) at .\内存逃逸.go:12:13
+.\内存逃逸.go:14:2: city escapes to heap:
+.\内存逃逸.go:14:2:   flow: ptr = &amp;city:
+.\内存逃逸.go:14:2:     from &amp;city (address-of) at .\内存逃逸.go:15:9
+.\内存逃逸.go:14:2:     from ptr := &amp;city (assign) at .\内存逃逸.go:15:6
+.\内存逃逸.go:14:2:   flow: ~r0 = ptr:
+.\内存逃逸.go:14:2:     from return ptr (return) at .\内存逃逸.go:16:2
+.\内存逃逸.go:14:2: moved to heap: city
+.\内存逃逸.go:12:13: ... argument does not escape
+.\内存逃逸.go:12:14: "*p1" escapes to heap
+.\内存逃逸.go:12:21: *p1 escapes to heap
+.\内存逃逸.go:7:20: *p escapes to heap:
+.\内存逃逸.go:7:20:   flow: {storage for ... argument} = &amp;{storage for *p}:
+.\内存逃逸.go:7:20:     from *p (spill) at .\内存逃逸.go:7:20
+.\内存逃逸.go:7:20:     from ... argument (slice-literal-element) at .\内存逃逸.go:7:13
+.\内存逃逸.go:7:20:   flow: {heap} = {storage for ... argument}:
+.\内存逃逸.go:7:20:     from ... argument (spill) at .\内存逃逸.go:7:13
+.\内存逃逸.go:7:20:     from fmt.Println(... argument...) (call parameter) at .\内存逃逸.go:7:13
+.\内存逃逸.go:7:14: "*p" escapes to heap:
+.\内存逃逸.go:7:14:   flow: {storage for ... argument} = &amp;{storage for "*p"}:
+.\内存逃逸.go:7:14:     from "*p" (spill) at .\内存逃逸.go:7:14
+.\内存逃逸.go:7:14:     from ... argument (slice-literal-element) at .\内存逃逸.go:7:13
+.\内存逃逸.go:7:14:   flow: {heap} = {storage for ... argument}:
+.\内存逃逸.go:7:14:     from ... argument (spill) at .\内存逃逸.go:7:13
+.\内存逃逸.go:7:14:     from fmt.Println(... argument...) (call parameter) at .\内存逃逸.go:7:13
+.\内存逃逸.go:7:13: ... argument does not escape
+.\内存逃逸.go:7:14: "*p" escapes to heap
+.\内存逃逸.go:7:20: *p escapes to heap
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -519,7 +600,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://skydk-go.github.io/2021/08/05/c-qiu-er-cha-shu-shen-du-de-liang-chong-fang-fa/">https://skydk-go.github.io/2021/08/05/c-qiu-er-cha-shu-shen-du-de-liang-chong-fang-fa/</a>
+                    <a href="https://skydk-go.github.io/2021/08/08/nei-cun-tao-yi/">https://skydk-go.github.io/2021/08/08/nei-cun-tao-yi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -598,48 +679,12 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
-            <div class="card">
-                <a href="/2021/08/05/c-zhong-vscode-zhong-shi-yong-extern-chu-cuo-chu-li/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
-                        
-                        <span class="card-title"></span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-05
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            sky@dk
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2021/08/05/guan-yu-c-guan-cha-zhe-mo-xing-de-xue-xi-he-li-jie/">
+                <a href="/2021/08/08/nei-cun-tao-yi/">
                     <div class="card-image">
                         
                         
@@ -656,7 +701,45 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky@dk
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/08/06/go-xie-cheng-tui-chu-ce-shi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-06
                             </span>
                         <span class="publish-author">
                             
