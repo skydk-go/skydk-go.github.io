@@ -445,21 +445,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-08-05
+                    2021-08-09
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-05
+                    2021-08-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    83
+                    77
                 </div>
                 
 
@@ -489,7 +489,27 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>进程同步方式：临界区，互斥量，信号量，事件。<br>线程同步方式：信号量，互斥量，条件变量。<br>进程通信方式:管道（普通管道和命名管道），消息队列，信号量，信号，共享内存,套接字。<br>线程通信方式：临界区，互斥量，信号量，事件。</p>
+                <p>1、链接服务，端口号和Ip地址</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go">conn<span class="token punctuation">,</span> err <span class="token operator">:=</span> grpc<span class="token punctuation">.</span><span class="token function">Dial</span><span class="token punctuation">(</span>Address<span class="token punctuation">,</span> grpc<span class="token punctuation">.</span><span class="token function">WithInsecure</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		grpclog<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token keyword">defer</span> conn<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">//defer延迟客户端关闭</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>2、初始化Grpc客户端</p>
+<pre class="line-numbers language-golang" data-language="golang"><code class="language-golang">c := pb.NewHelloClient(conn)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>3、调用远程函数</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go">req <span class="token operator">:=</span> <span class="token operator">&amp;</span>pb<span class="token punctuation">.</span>HelloRequest<span class="token punctuation">{</span>Name<span class="token punctuation">:</span> <span class="token string">"gRPC"</span><span class="token punctuation">}</span>
+
+res<span class="token punctuation">,</span> err <span class="token operator">:=</span> c<span class="token punctuation">.</span><span class="token function">SayHello</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span><span class="token function">Background</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> req<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>4、打印结果</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">grpclog.Println(res.Message)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
 
                 
             </div>
@@ -516,7 +536,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://skydk-go.github.io/2021/08/05/jin-cheng-he-xian-cheng-tong-xin-tong-bu-fang-shi-zong-jie/">https://skydk-go.github.io/2021/08/05/jin-cheng-he-xian-cheng-tong-xin-tong-bu-fang-shi-zong-jie/</a>
+                    <a href="https://skydk-go.github.io/2021/08/09/grpc-ke-hu-duan/">https://skydk-go.github.io/2021/08/09/grpc-ke-hu-duan/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -595,48 +615,12 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
-            <div class="card">
-                <a href="/2021/08/05/c-zhi-neng-zhi-zhen-unique-ptr-xue-xi-bi-ji/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
-                        
-                        <span class="card-title"></span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-05
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            sky@dk
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2021/08/05/c-zhong-vscode-zhong-shi-yong-extern-chu-cuo-chu-li/">
+                <a href="/2021/08/09/grpc-ke-hu-duan/">
                     <div class="card-image">
                         
                         
@@ -653,7 +637,45 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky@dk
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/08/09/grpc-fu-wu-qi-bu-zou/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-09
                             </span>
                         <span class="publish-author">
                             

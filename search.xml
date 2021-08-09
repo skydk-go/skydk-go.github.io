@@ -5,6 +5,32 @@
     
     <entry>
       <title></title>
+      <link href="/2021/08/09/grpc-ke-hu-duan/"/>
+      <url>/2021/08/09/grpc-ke-hu-duan/</url>
+      
+        <content type="html"><![CDATA[<p>1、链接服务，端口号和Ip地址</p><pre class="line-numbers language-go" data-language="go"><code class="language-go">conn<span class="token punctuation">,</span> err <span class="token operator">:=</span> grpc<span class="token punctuation">.</span><span class="token function">Dial</span><span class="token punctuation">(</span>Address<span class="token punctuation">,</span> grpc<span class="token punctuation">.</span><span class="token function">WithInsecure</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>grpclog<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token keyword">defer</span> conn<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">//defer延迟客户端关闭</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>2、初始化Grpc客户端</p><pre class="line-numbers language-golang" data-language="golang"><code class="language-golang">c := pb.NewHelloClient(conn)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>3、调用远程函数</p><pre class="line-numbers language-go" data-language="go"><code class="language-go">req <span class="token operator">:=</span> <span class="token operator">&amp;</span>pb<span class="token punctuation">.</span>HelloRequest<span class="token punctuation">{</span>Name<span class="token punctuation">:</span> <span class="token string">"gRPC"</span><span class="token punctuation">}</span>res<span class="token punctuation">,</span> err <span class="token operator">:=</span> c<span class="token punctuation">.</span><span class="token function">SayHello</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span><span class="token function">Background</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> req<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>4、打印结果</p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">grpclog.Println(res.Message)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/2021/08/09/grpc-fu-wu-qi-bu-zou/"/>
+      <url>/2021/08/09/grpc-fu-wu-qi-bu-zou/</url>
+      
+        <content type="html"><![CDATA[<p>1、初始化Grpc参数</p><pre class="line-numbers language-go" data-language="go"><code class="language-go">s <span class="token operator">:=</span> grpc<span class="token punctuation">.</span><span class="token function">NewServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>2、在服务器上注册服务</p><pre class="line-numbers language-golang" data-language="golang"><code class="language-golang">pb.RegisterHelloServer(s, HelloService)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>3、设置监听，指定IP地址和端口</p><pre class="line-numbers language-go" data-language="go"><code class="language-go">listen<span class="token punctuation">,</span> err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Listen</span><span class="token punctuation">(</span><span class="token string">"tcp"</span><span class="token punctuation">,</span> Address<span class="token punctuation">)</span><span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>grpclog<span class="token punctuation">.</span><span class="token function">Fatalf</span><span class="token punctuation">(</span><span class="token string">"Failed to listen: %v"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>4、启动服务</p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">s.Serve(listen)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
       <link href="/2021/08/08/nei-cun-tao-yi/"/>
       <url>/2021/08/08/nei-cun-tao-yi/</url>
       
